@@ -9,4 +9,12 @@ A simple implementation of the CHIP-8 interpreter written in Rust
 [] Implement the keyboard functions for 16 hex keys
 [] Implement the Display Output for the Sprites (existing crate to pull in?)
 [] Implement Timers and Sounds based on DT and ST
+[] Figure out SDL2 and how all that works
+
+## Links
+
+https://tonisagrista.com/blog/2021/chip8-implementation/
+http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#0.0
+https://sunjay.dev/learn-game-dev/getting-started.html
+
 

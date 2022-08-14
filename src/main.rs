@@ -5,6 +5,7 @@ use chip8::Chip8;
 use clap::{App, Arg};
 
 mod chip8;
+mod cpu;
 mod memory;
 
 fn main() {

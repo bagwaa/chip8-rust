@@ -1,6 +1,8 @@
 // 0x000 (0) to 0x1FF (511) reserved for interpreter (display) etc
 // 0x200 (512) to 0xFFF (4095) PROGRAM MEMORY LOADED IN
 
+use colored::Colorize;
+
 const INTERPRETER_START_ADDRESS: usize = 0x000;
 const MAX_ADDRESSABLE_MEMORY: usize = 4096;
 const ROM_START_ADDRESS: usize = 0x200;
@@ -53,6 +55,7 @@ impl Memory {
     }
 
     pub fn debug_memory(&self) {
+        println!("{}", "------ MEMORY ------".to_string().on_green().black());
         for (i, &byte) in self.memory.iter().enumerate() {
             println!("{:#x} ({}): {:#x} ({:#?})", i, i, byte, byte);
         }

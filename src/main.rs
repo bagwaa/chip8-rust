@@ -20,4 +20,7 @@ fn main() {
 
     // quick dirty dump of the memory layout
     memory.debug_memory();
+
+    // the next weird step is to keep the memory in the chip8 struct? or is it OK where it is? at
+    // least for now maybe its fine?
 }

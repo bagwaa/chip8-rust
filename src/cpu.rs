@@ -3,22 +3,22 @@ use std::fmt::Display;
 
 pub struct Cpu {
     registers: [u8; 16],
+    stack: [u16; 16],
     i: u16,
     pc: u16,
     sp: u8,
-    stack: [u16; 16],
-    dt: u16,
-    st: u16,
+    dt: u8,
+    st: u8,
 }
 
 impl Cpu {
     pub fn new() -> Cpu {
         Cpu {
             registers: [0; 16],
+            stack: [0; 16],
             i: 0,
             pc: 0,
             sp: 0,
-            stack: [0; 16],
             dt: 0,
             st: 0,
         }
@@ -62,12 +62,12 @@ impl Cpu {
         );
 
         self.single_register_dump(
-            "------ DT (Delay Timer) REGISTER (1 x 16 bit register) ------",
+            "------ DT (Delay Timer) REGISTER (1 x 8 bit register) ------",
             self.dt,
         );
 
         self.single_register_dump(
-            "------ ST (Sound Timer) REGISTER (1 x 16 bit register) ------",
+            "------ ST (Sound Timer) REGISTER (1 x 8 bit register) ------",
             self.st,
         );
     }

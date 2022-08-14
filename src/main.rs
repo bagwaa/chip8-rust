@@ -7,15 +7,16 @@ mod chip8;
 mod memory;
 
 fn main() {
+    let mut chip8 = Chip8::new();
+
     // should probably accept arguments to allow us to load a rom via path
 
-    // load the game from file and into a mutable empty buffer
-    let mut file = File::open("roms/PONG").unwrap(); // handle this properly, and why mutable?
+    let mut file = File::open("roms/PONG").expect("File not found");
     let mut buffer = Vec::<u8>::new();
 
-    file.read_to_end(&mut buffer).unwrap(); // handle this properly
+    file.read_to_end(&mut buffer)
+        .expect("Unable to read rom file");
 
-    let mut chip8 = Chip8::new();
     chip8.load(buffer);
-    chip8.debug();
+    chip8.dump();
 }

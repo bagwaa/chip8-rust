@@ -13,7 +13,7 @@ impl Chip8 {
         self.ram.load_rom(buffer);
     }
 
-    pub fn debug(&self) {
+    pub fn dump(&self) {
         self.ram.debug_memory();
     }
 }

@@ -1,8 +1,9 @@
 use std::fs::File;
-use std::io::prelude::*;
+use std::io::prelude::Read;
 
-use memory::Memory;
+use chip8::Chip8;
 
+mod chip8;
 mod memory;
 
 fn main() {
@@ -14,13 +15,7 @@ fn main() {
 
     file.read_to_end(&mut buffer).unwrap(); // handle this properly
 
-    // Load the ROM in the buffer into a structure representing the CHIP-8 memory spec
-    let mut memory = Memory::new();
-    memory.load_rom(buffer);
-
-    // quick dirty dump of the memory layout
-    memory.debug_memory();
-
-    // the next weird step is to keep the memory in the chip8 struct? or is it OK where it is? at
-    // least for now maybe its fine?
+    let mut chip8 = Chip8::new();
+    chip8.load(buffer);
+    chip8.debug();
 }

@@ -17,3 +17,5 @@ A simple implementation of the CHIP-8 interpreter written in Rust
 ## Links
 
 - http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
+- https://github.com/aquova/chip8-book
+- https://www.youtube.com/watch?v=AsukaPLuTsU

@@ -1,6 +1,9 @@
 # CHIP-8 Implementation in Rust
 
 A simple implementation of the CHIP-8 interpreter written in Rust
+## Usage
+
+`cargo run roms/PONG`
 
 ## Todo
 

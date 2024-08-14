@@ -1,4 +1,6 @@
-use super::display::Display;
+const SCREEN_WIDTH: usize = 64;
+const SCREEN_HEIGHT: usize = 32;
+
 use super::ram::Ram;
 
 #[derive(Debug)]
@@ -22,7 +24,7 @@ pub struct Cpu {
     // 16 8-bit keypad
     keys: [bool; 16],
     // 64x32 monochrome display
-    display: Display,
+    display: [bool; SCREEN_WIDTH * SCREEN_HEIGHT],
 }
 
 impl Cpu {
@@ -37,7 +39,7 @@ impl Cpu {
             dt: 0,
             st: 0,
             keys: [false; 16],
-            display: Display::new(),
+            display: [false; SCREEN_WIDTH * SCREEN_HEIGHT],
         }
     }
 
@@ -50,7 +52,7 @@ impl Cpu {
         }
     }
 
-    pub fn run(&mut self) {
+    pub fn tick(&mut self) {
         // Each opcode consists of two bytes, so we need to combine them into a single u16
         // The first byte is the high byte, the second byte is the low byte
         let high_byte = self.ram.read_byte(self.pc) as u16; // example: 0x12 (8-bit opcode)
@@ -75,16 +77,12 @@ impl Cpu {
             // NOP
             (0, 0, 0, 0) => (),
             // CLS
-            (0, 0, 0xE, 0) => self.display.clear(),
+            (0, 0, 0xE, 0) => {
+                // Clear the display
+                self.display = [false; SCREEN_WIDTH * SCREEN_HEIGHT];
+            }
             // Unknown Opcode Print an Error
             _ => println!("Unknown opcode: {:#06x}", opcode),
         }
-
-        // Initialize the display and event loop
-        // Should probably move this to main and pass in a reference to the display at some point
-        // in the future
-        self.display.init();
-
-        println!("Emulator exited successfully");
     }
 }
